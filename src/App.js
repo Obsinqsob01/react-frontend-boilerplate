@@ -1,23 +1,31 @@
-import React from "react"
+import React, { useContext, Suspense } from "react"
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom"
+  Router,
+} from "@reach/router"
 import { GlobalStyles } from "./styles/GlobalStyle"
+import { NavigationBar } from "./Components/NavigationBar"
 import { Home } from "./pages/Home"
+import { Login } from "./pages/Login"
+import { Register } from "./pages/Register"
+import { NotFound } from "./pages/NotFound"
+import { Context } from "./Context"
 
-function App() {
+export const App = () => {
+  const { isAuth } = useContext(Context)
+  
   return (
-    <Router>
+    <Suspense fallback={<h1>Carganding</h1>}>
       <GlobalStyles/>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-      </Switch>
-   </Router>
+      <NavigationBar />
+
+      <Router>
+        <NotFound default/>
+        <Home path='/'/>
+        {!isAuth && <Register path='/register' />}
+        {!isAuth && <Login path='/login' />}
+      </Router>
+
+    </Suspense>
   );
 }
 
-export default App;

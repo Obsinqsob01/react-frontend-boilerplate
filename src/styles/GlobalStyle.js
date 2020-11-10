@@ -12,7 +12,6 @@ export const GlobalStyles = createGlobalStyle`
   ul { list-style: none; }
   button { background: transparent; border: 0; outline: 0 }
   body {
-    background: #F8FFE5;
     height: 100vh;
     margin: 0 auto;
     overscroll-behavior: none;

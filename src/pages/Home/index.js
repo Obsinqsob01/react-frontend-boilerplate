@@ -1,13 +1,18 @@
-import React from "react"
-import { NavigationBar } from "../../Components/NavigationBar"
+import React, { useContext } from "react"
+import { Context } from "../../Context"
 
 const HomePage = () => {
-    return (
-        <>
-            <NavigationBar />
-            <h1>Home page my friend</h1>
-        </>        
-    )
+  const { isAuth } = useContext(Context)
+
+  if (isAuth) {
+    return <>
+      Hola usuario
+    </>
+  }
+
+  return <>
+    Hola desconocido, inicia sesion
+  </>
 }
 
 export const Home = React.memo(HomePage)
