@@ -1,7 +1,6 @@
 import React from 'react'
 import { useInputValue } from '../../hooks/useInputValue'
-import { Error, Form, Input, Title } from './styles'
-import { Button } from '../Button'
+import { Error, Form, Input, Title, Button } from './styles'
 import { Centered } from '../Layouts/Centered'
 
 export const UserFormLogin = ({ disabled, error, title, onSubmit }) => {

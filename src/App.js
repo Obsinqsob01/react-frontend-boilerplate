@@ -19,10 +19,11 @@ export const App = () => {
       <NavigationBar />
 
       <Router>
-        <NotFound default/>
-        <Home path='/'/>
+        {isAuth && <Home path='/'/>}
+        {isAuth && <NotFound default/>}
+
         {!isAuth && <Register path='/register' />}
-        {!isAuth && <Login path='/login' />}
+        {!isAuth && <Login path='/login' default />}
       </Router>
 
     </Suspense>

@@ -5,12 +5,19 @@ import { Context } from "../../Context"
 export const RightNav = ({ open }) => {
   const { isAuth, removeAuth } = useContext(Context)
 
+  if (isAuth) {
+    return (
+      <UL open={open}>
+        <Link to='/'>Home</Link>
+        <Link to='#' onClick={removeAuth}>Sign out</Link>
+      </UL>
+    )
+  }
+
   return (
     <UL open={open}>
-      <Link to='/'>Home</Link>
-      {!isAuth && <Link to='/login'>Sign In</Link>}
-      {!isAuth && <Link to='/register'>Sign Up</Link>}
-      {isAuth && <Link to='#' onClick={removeAuth}>Sign out</Link>}
+      <Link to='/login'>Sign In</Link>
+      <Link to='/register'>Sign Up</Link>
     </UL>
   )
 }

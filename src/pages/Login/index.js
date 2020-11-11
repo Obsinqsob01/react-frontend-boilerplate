@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { navigate } from "@reach/router"
 import { UserService } from "../../services"
 import { UserFormLogin } from "../../Components/UserForm";
@@ -8,9 +8,17 @@ export const Login = () => {
   const userService = UserService();
   const { activateAuth } = useContext(Context)
   const [ errorMessage, setErrorMessage ] = useState("")
+  const [ isLoading, setIsLoading ] = useState(false)
+
+  useEffect(() => {
+    const ac = new AbortController()
+
+    return () => ac.abort();
+  }, [])
 
   const handleSubmit = async function(input) {
     try {
+      setIsLoading(true)
       let token = await userService.Login(input)
       activateAuth(token)
 
@@ -18,12 +26,14 @@ export const Login = () => {
     } catch(error) {
       setErrorMessage(error.response.data.message)
       console.error(error)
+    }  finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <>
-      <UserFormLogin title="Iniciar Sesion" onSubmit={handleSubmit} error={errorMessage}/>
+      <UserFormLogin title="Iniciar Sesion" onSubmit={handleSubmit} error={errorMessage} disabled={isLoading} />
     </>
   )
 }

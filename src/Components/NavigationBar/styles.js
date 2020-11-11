@@ -2,19 +2,22 @@ import styled from "styled-components"
 import { Link as LinkRouter } from "@reach/router"
 
 export const Link = styled(LinkRouter)`
-    color: white;
+    color: #00BCF1;
     text-decoration: none;
     padding: 15px .3rem;
+
 `
 
 export const Navigation = styled.nav`
     width: 100%;
     height: 55px;
-    background: #DA3E52;
-    color: #F8FFE5;
+    background: white;
+    color: #00BCF1;
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px #d9d9d9 solid;
+    margin-bottom: .5rem;
 
     .logo {
         padding: 15px 0;

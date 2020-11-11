@@ -1,17 +1,8 @@
-import React, { useContext } from "react"
-import { Context } from "../../Context"
+import React from "react"
 
 const HomePage = () => {
-  const { isAuth } = useContext(Context)
-
-  if (isAuth) {
-    return <>
-      Hola usuario
-    </>
-  }
-
   return <>
-    Hola desconocido, inicia sesion
+    Hola usuario
   </>
 }
 
