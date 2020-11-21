@@ -19,13 +19,18 @@ export const Login = () => {
   const handleSubmit = async function(input) {
     try {
       setIsLoading(true)
-      let token = await userService.Login(input)
-      activateAuth(token)
+      let { data } = await userService.Login(input)
+      activateAuth(data.token)
 
       navigate('/')
     } catch(error) {
-      setErrorMessage(error.response.data.message)
       console.error(error)
+      if (error.response?.data?.errors) {
+        setErrorMessage(error.response.data.errors)
+        return
+      }
+      
+      setErrorMessage(error.response?.data?.message || "Can not login at this time")
     }  finally {
       setIsLoading(false)
     }
