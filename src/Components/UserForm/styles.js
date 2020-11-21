@@ -3,6 +3,9 @@ import styled from 'styled-components'
 export const Error = styled.small`
   font-size: 10px;
   color: red;
+  display: block;
+  margin: 0 auto;
+  width: 50%;
 `
 
 export const Title = styled.h2`
@@ -22,11 +25,15 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 5px;
   margin-bottom: 8px;
   padding: 8px 4px;
   display: block;
   width: 100%;
+
+  &:active {
+    border-color: #00BCF1;
+  }
 `
 
 export const Button = styled.button`
